@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Premium Live Spreadsheet Dashboard & Appointment Database">
+    <title>HealEase | Live Appointment Dashboard</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        
+        <!-- Header Section -->
+        <header class="main-header">
+            <div class="header-logo">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+                    </svg>
+                </div>
+                <div class="logo-text">
+                    <span class="brand-name">HealEase</span>
+                    <span class="brand-sub">Live Database Portal</span>
+                </div>
+            </div>
+            
+            <div class="header-center-info">
+                <span class="sync-badge">
+                    <span class="dot-active" id="sync-dot"></span>
+                    <span id="sync-text">Live Synchronized</span>
+                </span>
+            </div>
+            
+            <div class="header-actions">
+                <button class="theme-toggle" id="theme-btn" aria-label="Toggle Theme">
+                    <!-- Sun Icon -->
+                    <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"/>
+                        <line x1="12" y1="1" x2="12" y2="3"/>
+                        <line x1="12" y1="21" x2="12" y2="23"/>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                        <line x1="1" y1="12" x2="3" y2="12"/>
+                        <line x1="21" y1="12" x2="23" y2="12"/>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                    </svg>
+                    <!-- Moon Icon -->
+                    <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                    </svg>
+                </button>
+            </div>
+        </header>
+
+        <!-- Stats Metric Grid -->
+        <section class="dashboard-stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon stat-total-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                </div>
+                <div class="stat-info">
+                    <h3 id="stat-total">0</h3>
+                    <p>Total Bookings</p>
+                </div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon stat-cardiology-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                </div>
+                <div class="stat-info">
+                    <h3 id="stat-cardiology">0</h3>
+                    <p>Cardiology</p>
+                </div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon stat-med-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                </div>
+                <div class="stat-info">
+                    <h3 id="stat-medicine">0</h3>
+                    <p>General Medicine</p>
+                </div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon stat-other-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+                </div>
+                <div class="stat-info">
+                    <h3 id="stat-others">0</h3>
+                    <p>Other Specialties</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Professional Layout Split -->
+        <div class="dashboard-split-layout">
+            
+            <!-- Sidebar Panel: Spreadsheet Metadata -->
+            <aside class="dashboard-sidebar">
+                <!-- Sheet Data Insights Card -->
+                <div class="sidebar-card">
+                    <h3 class="sidebar-card-title">Data Insights</h3>
+                    <ul class="meta-list">
+                        <li class="meta-item">
+                            <span class="meta-lbl">Average Age:</span>
+                            <span class="meta-val" id="insight-avg-age">--</span>
+                        </li>
+                        <li class="meta-item">
+                            <span class="meta-lbl">Top Specialty:</span>
+                            <span class="meta-val" id="insight-top-dept">--</span>
+                        </li>
+                        <li class="meta-item">
+                            <span class="meta-lbl">Top Consultant:</span>
+                            <span class="meta-val" id="insight-top-doc">--</span>
+                        </li>
+                        <li class="meta-item">
+                            <span class="meta-lbl">Busiest Date:</span>
+                            <span class="meta-val" id="insight-peak-date">--</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Clinic Details Info Card -->
+                <div class="sidebar-card">
+                    <h3 class="sidebar-card-title">Active Clinicians</h3>
+                    <div class="clinician-list">
+                        <div class="clinician-item">
+                            <div class="avatar">RT</div>
+                            <div class="clinician-info">
+                                <h4>Dr. Ravi Teja</h4>
+                                <p>Cardiology Specialist</p>
+                            </div>
+                        </div>
+                        <div class="clinician-item">
+                            <div class="avatar">NR</div>
+                            <div class="clinician-info">
+                                <h4>Dr. N. T. R. Rao</h4>
+                                <p>General Medicine Specialist</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Main Data Table Container -->
+            <main class="dashboard-main-panel">
+                <div class="table-container-card">
+                    
+                    <!-- Table Header Controls: Search Box -->
+                    <div class="table-header-controls">
+                        <div class="search-box">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="search-icon">
+                                <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                            </svg>
+                            <input type="text" id="dashboard-search" placeholder="Search appointments by name, email, phone number...">
+                        </div>
+                    </div>
+
+                    <!-- Scrollable Data Grid Table -->
+                    <div class="responsive-table-wrapper">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>TIME STAMP</th>
+                                    <th>FULL NAME</th>
+                                    <th>PHONE NUMBER</th>
+                                    <th>EMAIL</th>
+                                    <th>AGE</th>
+                                    <th>DEPARTMENT</th>
+                                    <th>DOCTOR</th>
+                                    <th>DATE</th>
+                                    <th>TIME</th>
+                                </tr>
+                            </thead>
+                            <tbody id="data-tbody">
+                                <!-- Populated dynamically by app.js -->
+                            </tbody>
+                        </table>
+                        
+                        <!-- Empty Search/Filter State -->
+                        <div class="empty-state" id="table-empty-state">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="empty-icon">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                <polyline points="14 2 14 8 20 8"/>
+                                <line x1="16" y1="13" x2="8" y2="13"/>
+                                <line x1="16" y1="17" x2="8" y2="17"/>
+                            </svg>
+                            <h3>No spreadsheet data matches search</h3>
+                            <p>Try modifying your query or checking for spelling errors.</p>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+    </div>
+    <!-- Application Logic Script -->
+    <script src="app.js"></script>
+</body>
+</html>
